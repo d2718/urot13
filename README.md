@@ -13,32 +13,32 @@ blocks are supported.
 
 The following characters from those ranges just can't be properly supported:
 
-Code Point  | Character
- (decimal)  | Name
------------ | -----
-13F (319)   | Latin_Capital_Letter_L_With_Middle_Dot
-140 (320)   | Latin_Small_Letter_L_With_Middle_Dot
-182 (386)   | Latin_Capital_Letter_B_With_Topbar
-183 (387)   | Latin_Small_Letter_B_With_Topbar
-18B (395)   | Latin_Capital_Letter_D_With_Topbar
-18C (396)   | Latin_Small_Letter_D_With_Topbar
-19A (410)   | Latin_Small_Letter_L_With_Bar
-19D (413)   | Latin_Capital_Letter_N_With_Left_Hook
-19E (414)   | Latin_Small_Letter_N_With_Long_Right_Leg
-1C5 (453)   | Latin_Capital_Letter_D_With_Small_Letter_Z_With_Caron
-1C8 (456)   | Latin_Capital_Letter_L_With_Small_Letter_J
-1CB (459)   | Latin_Capital_Letter_N_With_Small_Letter_J
-1F2 (498)   | Latin_Capital_Letter_D_With_Small_Letter_Z
-220 (544)   | Latin_Capital_Letter_N_With_Long_Right_Leg
-221 (545)   | Latin_Small_Letter_D_With_Curl
-234 (564)   | Latin_Small_Letter_L_With_Curl
-235 (565)   | Latin_Small_Letter_N_With_Curl
-236 (566)   | Latin_Small_Letter_T_With_Curl
-23D (573)   | Latin_Capital_Letter_L_With_Bar
-23F (575)   | Latin_Small_Letter_S_With_Swash_Tail
-240 (576)   | Latin_Small_Letter_Z_With_Swash_Tail
-1EFE (7934) | Latin_Capital_Letter_Y_With_Loop
-1EFF (7935) | Latin_Small_Letter_Y_With_Loop
+| Code Point  | Character |
+|  (decimal)  | Name      |
+| ----------- | --------- |
+| 013F (319)  | Latin_Capital_Letter_L_With_Middle_Dot |
+| 0140 (320)  | Latin_Small_Letter_L_With_Middle_Dot |
+| 0182 (386)  | Latin_Capital_Letter_B_With_Topbar |
+| 0183 (387)  | Latin_Small_Letter_B_With_Topbar |
+| 018B (395)  | Latin_Capital_Letter_D_With_Topbar |
+| 018C (396)  | Latin_Small_Letter_D_With_Topbar |
+| 019A (410)  | Latin_Small_Letter_L_With_Bar |
+| 019D (413)  | Latin_Capital_Letter_N_With_Left_Hook |
+| 019E (414)  | Latin_Small_Letter_N_With_Long_Right_Leg |
+| 01C5 (453)  | Latin_Capital_Letter_D_With_Small_Letter_Z_With_Caron |
+| 01C8 (456)  | Latin_Capital_Letter_L_With_Small_Letter_J |
+| 01CB (459)  | Latin_Capital_Letter_N_With_Small_Letter_J |
+| 01F2 (498)  | Latin_Capital_Letter_D_With_Small_Letter_Z |
+| 0220 (544)  | Latin_Capital_Letter_N_With_Long_Right_Leg |
+| 0221 (545)  | Latin_Small_Letter_D_With_Curl |
+| 0234 (564)  | Latin_Small_Letter_L_With_Curl |
+| 0235 (565)  | Latin_Small_Letter_N_With_Curl |
+| 0236 (566)  | Latin_Small_Letter_T_With_Curl |
+| 023D (573)  | Latin_Capital_Letter_L_With_Bar |
+| 023F (575)  | Latin_Small_Letter_S_With_Swash_Tail |
+| 0240 (576)  | Latin_Small_Letter_Z_With_Swash_Tail |
+| 1EFE (7934) | Latin_Capital_Letter_Y_With_Loop |
+| 1EFF (7935) | Latin_Small_Letter_Y_With_Loop |
 
 ## Building and Installing
 
