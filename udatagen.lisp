@@ -172,3 +172,12 @@
     (format t "~x (~a) ~a~&" (first x) (first x) (codepoint-name (first x)))))
 
 (defun hex (x) (format nil "~x" x))
+
+(defparameter *unicode-latin-ranges*
+  '((0 #x024f) (#x1e00 #x1eff)))
+
+(defun find-name (str)
+  (dolist (rng *unicode-latin-ranges*)
+    (loop for n from (first rng) to (second rng) do
+         (when (cl-ppcre:scan str (codepoint-name n))
+           (format t "~x (~d) ~a~&" n n (codepoint-name n))))))
