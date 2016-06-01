@@ -13,9 +13,8 @@ blocks are supported.
 
 The following characters from those ranges just can't be properly supported:
 
-| Code Point  | Character |
-|  (decimal)  | Name      |
-| ----------- | --------- |
+| Code Point  | Character Name |
+| ----------- | -------------- |
 | 013F (319)  | Latin_Capital_Letter_L_With_Middle_Dot |
 | 0140 (320)  | Latin_Small_Letter_L_With_Middle_Dot |
 | 0182 (386)  | Latin_Capital_Letter_B_With_Topbar |
