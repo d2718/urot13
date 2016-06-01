@@ -3,7 +3,7 @@
 ;;;
 ;;; Generates the Unicode data used by urot13.
 ;;;
-;;; 2016-05-30
+;;; 2016-06-01
 
 ;;              Latin-1: #x0080 to #x00ff
 ;;     Latin Extended-A: #x0100 to #x017f
@@ -169,6 +169,6 @@
 
 (defun list-names (lst)
   (dolist (x lst)
-    (format t "~a ~a~&" x (codepoint-name (first x)))))
+    (format t "~x (~a) ~a~&" (first x) (first x) (codepoint-name (first x)))))
 
 (defun hex (x) (format nil "~x" x))
