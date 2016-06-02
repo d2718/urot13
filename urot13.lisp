@@ -5,10 +5,6 @@
 ;;;
 ;;; 2016-06-01
 
-(defmacro range-check-and-rotate (low var)
-  `((and (<= ,low ,var) (> ,(+ low 26) ,var))
-    (+ ,low (mod (+ 13 (- ,var ,low)) 26))))
-
 (defconstant +small-a+ (char-code #\a))
 (defconstant +capital-a+ (char-code #\A))
 (defconstant +small-z+ (char-code #\z))
