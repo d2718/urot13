@@ -8,7 +8,7 @@ performing rot13 on the base ASCII character, and writing out the new base
 character followed by the appropriate diacritics.
 
 Currently, most precomposed Unicode characters from the
-[Latin-1 Supplement](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block),
+[Latin-1 Supplement](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)),
 [Latin Extended-A](https://en.wikipedia.org/wiki/Latin_Extended-A),
 [Latin Extended-B](https://en.wikipedia.org/wiki/Latin_Extended-B), and
 [Latin Extended Additional](https://en.wikipedia.org/wiki/Latin_Extended_Additional)
