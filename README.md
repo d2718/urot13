@@ -7,9 +7,16 @@ character into a base ASCII character and a series of combining diacritics,
 performing rot13 on the base ASCII character, and writing out the new base
 character followed by the appropriate diacritics.
 
-Currently, most precomposed Unicode characters from the Latin-1 Supplement,
-Latin Extended-A, Latin Extended-B, and Latin Extended Additional Unicode
-blocks are supported.
+Currently, most precomposed Unicode characters from the
+[Latin-1 Supplement](https://en.wikipedia.org/wiki/Latin-1_Supplement_(Unicode_block)),
+[Latin Extended-A](https://en.wikipedia.org/wiki/Latin_Extended-A),
+[Latin Extended-B](https://en.wikipedia.org/wiki/Latin_Extended-B), and
+[Latin Extended Additional](https://en.wikipedia.org/wiki/Latin_Extended_Additional)
+Unicode blocks are supported. Additionally, rot13 is performed on appropriate
+characters from the
+[Enclosed Alphanumerics](https://en.wikipedia.org/wiki/Enclosed_Alphanumerics),
+[Enclosed Alphanumerics Supplement](https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement),
+and [CJK Latin Fullwidth Forms](https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms).
 
 The following characters from those ranges just can't be properly supported:
 
@@ -38,6 +45,9 @@ The following characters from those ranges just can't be properly supported:
 | 0240 (576)  | Latin_Small_Letter_Z_With_Swash_Tail |
 | 1EFE (7934) | Latin_Capital_Letter_Y_With_Loop |
 | 1EFF (7935) | Latin_Small_Letter_Y_With_Loop |
+
+These characters either won't be rot13'd, or will be demoted to a plain,
+noncombining form and rot13'd.
 
 ## Building and Installing
 
