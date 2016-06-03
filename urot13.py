@@ -1,7 +1,16 @@
 #!/usr/bin/env python
 
+# urot13.py
+#
+# A Unicode-aware rot13 implementation.
+#
+# updated: 2016-06-03
+
 import sys
 
+# This hash maps the code points of supported precomposed Unicode characters
+# to a tuple containing the code points of the base character and the
+# combining diacritics that combine to make that character.
 DATA = { 7935: (121,), 7934: (89,), 7929: (121, 771), 7928: (89, 771),
     7927: (121, 777), 7926: (89, 777), 7925: (121, 803), 7924: (89, 803),
     7923: (121, 768), 7922: (89, 768), 7921: (117, 795, 803),
@@ -153,6 +162,8 @@ DATA = { 7935: (121,), 7934: (89,), 7929: (121, 771), 7928: (89, 771),
     193: (65, 769), 192: (65, 768)
 }
 
+# These are the code points of the beginnings of the contiguous ranges of
+# characters that can be rotated.
 RANGES = [
     ord(u'A'), ord(u'a'),
     0x249c,  # parenthesized latin small letter a
@@ -168,12 +179,17 @@ RANGES = [
 ]
 
 def determine_range(cp):
+    '''If code point cp is in one of the contiguous ranges of characters
+    that can be rotated, return the code point of the low end of that range.
+    Otherwise, return None.'''
     for low in RANGES:
         if low <= cp and cp < low+26:
             return low
     return None
 
 def range_rotate(cp):
+    '''If code point cp is in one of the ranges to be rotated, rotate it;
+    otherwise, pass it through unchanged.'''
     low = determine_range(cp)
     if low is not None:
         return low + ((cp - low + 13) % 26)
@@ -181,6 +197,10 @@ def range_rotate(cp):
         return cp
 
 def unicode_rot13(cp):
+    '''If cp is the code point of a supported precomposed Unicode character,
+    decompose it into a base character and a series of combining diacritics,
+    rotate the base character, and return the tuple of code points that combine
+    to make the rotated character.'''
     try:
         x = DATA[cp]
         return (range_rotate(x[0]), ) + x[1:]
@@ -188,6 +208,7 @@ def unicode_rot13(cp):
         return (range_rotate(cp), )
 
 def munch_line(line):
+    '''Perform rot13 on a single line of text.'''
     out = []
     for c in line.decode('utf-8'):
         out.extend(unicode_rot13(ord(c)))
