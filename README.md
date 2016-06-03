@@ -62,6 +62,10 @@ script:
 This will compile `urot13.lisp` into a binary called `urot13`. A good place to
 put this is in `/usr/local/bin/`.
 
+There is also a Python implemenation, `urot13.py`, if that's more your thing.
+It's a single stand-alone file with no dependencies. The bulk of the text in
+the file is just data.
+
 `urot13.lisp` reads data from the file `unicode_data.lisp`. If you want to
 generate this file yourself (or regenerate it, perhaps to include other Latin
 Extended code blocks), you can use (or modify) `udatagen.lisp`, which requires
