@@ -1,7 +1,8 @@
 # `urot13`
 a Unicode-aware rot13 implementation
 
-ASCII rot13 is pretty easy to implement; with Unicode, it's a bit more
+ASCII rot13 is pretty easy to implement; with
+[Unicode](https://en.wikipedia.org/wiki/Unicode), it's a bit more
 complicated. This program works by decomposing each precomposed Unicode
 character into a base ASCII character and a series of combining diacritics,
 performing rot13 on the base ASCII character, and writing out the new base
@@ -21,7 +22,7 @@ Unicode blocks are supported. Additionally, rot13 is performed on appropriate
 characters from the
 [Enclosed Alphanumerics](https://en.wikipedia.org/wiki/Enclosed_Alphanumerics),
 [Enclosed Alphanumerics Supplement](https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement),
-and [CJK Latin Fullwidth Forms](https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms).
+and [CJK Latin Fullwidth Forms](https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms) blocks.
 
 The following characters from those ranges just can't be properly supported:
 
@@ -85,7 +86,7 @@ the text in the file is just data, the same data found in the file
 ## C Implementation
 
 You can compile `urot13.c` with `gcc`. It definitely works under Linux with
-four-bytes+ `int`s, no guarantees anywhere else. It requires
+four-byte (or larger) `int`s, no guarantees anywhere else. It requires
 
  *  `<stdlib.h>`
  *  `<stdio.h>`
