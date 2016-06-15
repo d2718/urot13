@@ -43,25 +43,25 @@
 
 /* The unceremonious result of being out of memory.
  */
-void dbht_die(char * msg) {
+void dbht_die(const char * msg) {
   fprintf(stderr, "%s\n", msg);
   exit(EXIT_FAILURE);
 }
 
 typedef struct node {
   unsigned int key;
-  unsigned int * value;
+  const unsigned int * value;
   int l_height, r_height;
   struct node * l_tree;
   struct node * r_tree;
 } dbht_Node;
 
 
-int dbht_bias(dbht_Node * tree) {
+int dbht_bias(const dbht_Node * tree) {
   return(tree->r_height - tree->l_height);
 }
 
-int dbht_height(dbht_Node * tree) {
+int dbht_height(const dbht_Node * tree) {
   if(tree == NULL)
     return(0);
   if(tree->l_height > tree->r_height) {
@@ -71,7 +71,8 @@ int dbht_height(dbht_Node * tree) {
   }
 }
 
-dbht_Node * dbht_new_node(unsigned int nkey, unsigned int * nvalue) {
+dbht_Node * dbht_new_node(unsigned int nkey,
+                          const unsigned int * nvalue) {
   
   dbht_Node * nnp = malloc(sizeof(dbht_Node));
   if(nnp == NULL) {
@@ -107,7 +108,7 @@ void dbht_destroy(dbht_Node * tree) {
  */
 void dbht_insert(dbht_Node * tree,
                  unsigned int nkey,
-                 unsigned int * nvalue) {
+                 const unsigned int * nvalue) {
 
   if(nkey == tree->key) {
     tree->value = nvalue;
@@ -161,7 +162,7 @@ void dbht_rotate_left(dbht_Node ** tree_ptr) {
  */
 void dbht_balanced_insert(dbht_Node ** tree_ptr,
                           unsigned int nkey,
-                          unsigned int * nvalue) {
+                          const unsigned int * nvalue) {
   dbht_Node * tree = *tree_ptr;
   int new_bias;
 

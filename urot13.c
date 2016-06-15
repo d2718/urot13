@@ -12,6 +12,14 @@
  * Also, of course, rot13s appropriate ASCII characters, as well as characters
  * from the Enclosed Alphanumerics, Enclosed Alphanumerics Supplement, and
  * CJK Fullwidth Forms blocks.
+ *
+ * Internally, this program stores code points as unsigned ints. If your
+ * architecture can't fit all 21 bits into an unsigned int, you may need to
+ * consider some changes. The first change I would consider would be not
+ * using your toaster to perform trivial text obfuscations. If, at that point,
+ * you haven't been dissuaded, you're going to need to turn those unsigned
+ * ints (including the UNICHAR typedef in unicodec.c) into something else.
+ * Best of luck with your ridiculousness.
  */
 
 #include <stdlib.h>
@@ -23,7 +31,7 @@
 /* The lowest code point of each range of characters that could and
  * should get rot13'd.
  */
-UNICHAR const RANGES[] = {
+const UNICHAR const RANGES[] = {
   0x0041,    /* A */
   0x0061,    /* a */
   0x249c,    /* parenthesized latin small letter a */
@@ -39,7 +47,7 @@ UNICHAR const RANGES[] = {
 };
 
 /* The length of RANGES[] */
-size_t const RANGES_LEN = 12;
+const size_t RANGES_LEN = 12;
 
 /* Will get filled with pointers to data about which code points decompose
  * into which other code points.
@@ -47,13 +55,13 @@ size_t const RANGES_LEN = 12;
 dbht_Node * unitree = NULL;
 
 /* Data potato doo-wop doo-wop */
-char const * const OM_ERROR = "Unable to allocate memory, which is dumb.";
+const char * const OM_ERROR = "Unable to allocate memory, which is dumb.";
 
 /* It's easier to just give up in the case of errors. Sure, I'm lazy, but I
  * really think it'd violate the Principle of Least Surprise if it did
  * anything else.
  */
-void die_unnatural_death(char const * const msg) {
+void die_unnatural_death(const char * const msg) {
   fprintf(stderr, "%s\n", msg);
   exit(1);
 }
@@ -94,8 +102,8 @@ size_t unicode_rot13(UNICHAR cp, UNICHAR * buff) {
     buff[0] = range_rotate(cp);
     return 1;
   } else {
-    unsigned int n_chars = (node->value)[0];
-    unsigned int * val_vec = &node->value[1];
+    const unsigned int n_chars = (node->value)[0];
+    const unsigned int * val_vec = &node->value[1];
     buff[0] = range_rotate((UNICHAR) val_vec[0]);
     for(unsigned int n = 1; n < n_chars; ++n)
       buff[n] = (UNICHAR) val_vec[n];
@@ -109,7 +117,7 @@ size_t unicode_rot13(UNICHAR cp, UNICHAR * buff) {
  * REMINDER!
  * The returned pointer will need to be free()d!
  */
-char * munch_line(char * line, size_t in_len, size_t * out_len) {
+char * munch_line(const char * line, size_t in_len, size_t * out_len) {
   size_t ub_len = 0;
   size_t out_n = 0;
   UNICHAR * unibuff = NULL;
@@ -159,7 +167,7 @@ int main(int argc, char ** argv) {
     char cont = 1;
     unsigned int n = 0;
     unsigned int ch;
-    unsigned int * ptr;
+    const unsigned int * ptr;
 
     while(cont) {
       if(unidata[n] == 0) {

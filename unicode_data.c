@@ -1,4 +1,4 @@
-unsigned int unidata[] = {
+const unsigned int unidata[] = {
   512, 2, 65, 783,
   513, 2, 97, 783,
   259, 2, 97, 774,

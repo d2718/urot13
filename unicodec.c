@@ -71,11 +71,11 @@ UNICHAR unichar_assemble(char * b) {
   return(x[0] | (x[1]<<6) | (x[2]<<12) | (x[3]<<18));
 }
 
-UNICHAR next_codepoint(char * stream, size_t *bytes_left) {
-  char first = stream[0];
+UNICHAR next_codepoint(const char * stream, size_t *bytes_left) {
+  const char first = stream[0];
   char bytes[4] = {0, 0, 0, 0};
   char first_mask, n_bytes, n, m, tmp;
-  size_t b = *bytes_left;
+  const size_t b = *bytes_left;
 
   if((first & mask_high1) == 0) {
     *bytes_left = b - 1;
@@ -117,7 +117,7 @@ UNICHAR next_codepoint(char * stream, size_t *bytes_left) {
  * in buff, passed as in_len. Writes the length of the buffer returned into
  * the address of out_len.
  */
-UNICHAR * utf8_decode_buffer(char * buff,
+UNICHAR * utf8_decode_buffer(const char * buff,
                              size_t in_len,
                              size_t *out_len) {
   size_t bytes_left = in_len;
@@ -188,7 +188,7 @@ unsigned char utf8_encode_point(UNICHAR ch, unsigned char * target) {
  * pointer to which is returned. Requires the length of buff, passed as
  * in_len; the length of the returned array is written to *out_len.
  */
-char * utf8_encode_buffer(UNICHAR * buff,
+char * utf8_encode_buffer(const UNICHAR * buff,
                           size_t in_len,
                           size_t * out_len) {
   unsigned char bytes[] = {0, 0, 0, 0};
