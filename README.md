@@ -108,3 +108,9 @@ for technical reasons. These are:
 
 The data in `unicode_data.c` is the same stuff that's in `unicode_data.lisp`
 and at the beginning of `urot13.py`.
+
+### Electric Boogaloo
+
+I added a second C implementation that uses an array-based (as opposed to
+a proper node-based) binary tree. This is `urot13_new.c`, and it requires
+`dbht_new.c`. Everything else is the same.
