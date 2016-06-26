@@ -2,7 +2,7 @@
  *
  * a Unicode-aware rot13 implementation
  *
- * last update: 2016-06-14
+ * last update: 2016-06-25
  *
  * Reads UTF-8 encoded data from the standard input. If any code points can be
  * represented as a rot13-able base character followed by combining diacritics,
