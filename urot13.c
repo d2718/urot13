@@ -2,7 +2,7 @@
  *
  * a Unicode-aware rot13 implementation
  *
- * last update: 2016-06-14
+ * last update: 2016-06-25
  *
  * Reads UTF-8 encoded data from the standard input. If any code points can be
  * represented as a rot13-able base character followed by combining diacritics,
@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "unicodec.c"
-#include "dbht.c"
 #include "unicode_data.c"
 
 /* The lowest code point of each range of characters that could and
@@ -49,10 +48,11 @@ const UNICHAR const RANGES[] = {
 /* The length of RANGES[] */
 const size_t RANGES_LEN = 12;
 
-/* Will get filled with pointers to data about which code points decompose
- * into which other code points.
- */
-dbht_Node * unitree = NULL;
+/* Array of code points that get decomposed. */
+UNICHAR * decomp_points;
+
+/* Array of pointers to data about how each code point gets decomposed. */
+const unsigned int ** decomp_values;
 
 /* Data potato doo-wop doo-wop */
 const char * const OM_ERROR = "Unable to allocate memory, which is dumb.";
@@ -64,6 +64,27 @@ const char * const OM_ERROR = "Unable to allocate memory, which is dumb.";
 void die_unnatural_death(const char * const msg) {
   fprintf(stderr, "%s\n", msg);
   exit(1);
+}
+
+/* If the code point key is decomposable into something rot13able, return
+ * a pointer to the appropriate decomposition info, otherwise, return NULL.
+ */
+const unsigned int * treelike_search(UNICHAR key, size_t lo, size_t hi) {
+  size_t length = hi - lo;
+  if(length < 2) {
+    if(decomp_points[lo] == key)
+      return decomp_values[lo];
+    else
+      return NULL;
+  } else {
+    size_t mid = lo + (length / 2);
+    if(key < decomp_points[mid])
+      return treelike_search(key, lo, mid);
+    else if(key > decomp_points[mid])
+      return treelike_search(key, mid + 1, hi);
+    else
+      return decomp_values[mid];
+  }
 }
 
 /* If cp falls in a range that should get rot13'd, return the lowest code
@@ -97,13 +118,13 @@ UNICHAR range_rotate(UNICHAR cp) {
  * it'll probably just be 1.
  */
 size_t unicode_rot13(UNICHAR cp, UNICHAR * buff) {
-  dbht_Node * node = dbht_find(unitree, cp);
-  if(node == NULL) {
+  const unsigned int * chptr = treelike_search(cp, 0, unidata_size);
+  if(chptr == NULL) {
     buff[0] = range_rotate(cp);
     return 1;
   } else {
-    const unsigned int n_chars = (node->value)[0];
-    const unsigned int * val_vec = &node->value[1];
+    const unsigned int n_chars = chptr[0];
+    const unsigned int * val_vec = &chptr[1];
     buff[0] = range_rotate((UNICHAR) val_vec[0]);
     for(unsigned int n = 1; n < n_chars; ++n)
       buff[n] = (UNICHAR) val_vec[n];
@@ -163,22 +184,23 @@ int main(int argc, char ** argv) {
   size_t out_len = 0;
   size_t n = 0;
 
+  decomp_points = malloc(sizeof(UNICHAR) * unidata_size);
+  decomp_values = malloc(sizeof(unsigned int *) * unidata_size);
+
   {
     char cont = 1;
-    unsigned int n = 0;
-    unsigned int ch;
-    const unsigned int * ptr;
+    size_t m = 0;
 
     while(cont) {
       if(unidata[n] == 0) {
         cont = 0;
       } else {
-        ch = unidata[n];
+        decomp_points[m] = unidata[n];
         ++n;
-        ptr = &unidata[n];
+        decomp_values[m] = &unidata[n];
         n = n + unidata[n] + 1;
+        ++m;
       }
-      dbht_balanced_insert(&unitree, ch, ptr);
     }
   }
 
@@ -189,8 +211,8 @@ int main(int argc, char ** argv) {
   }
 
   free(in_line);
-  dbht_destroy(unitree);
-  free(unitree);
+  free(decomp_points);
+  free(decomp_values);
   
   return 0;
 }

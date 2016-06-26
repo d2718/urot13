@@ -91,7 +91,6 @@ four-byte (or larger) `int`s, no guarantees anywhere else. It requires
  *  `<stdlib.h>`
  *  `<stdio.h>`
  *  `unicodec.c` (supplied)
- *  `dbht.c` (supplied)
  *  `unicode_data.c` (supplied)
 
 Lisp and Python both provide for free a couple of non-trivial things that
@@ -100,17 +99,9 @@ used them, but I rolled my own, largely because it was instructive, but also
 for technical reasons. These are:
  *  UTF-8 encoding and decoding (mini-library appropriate for distribution
     in `unicodec.c`)
- *  Hash tables. I used a specialized type of binary search tree (in `dbht.c`,
-    this is definitely not appropriate for anything but this application)
-    because it's easier to implement. At least, it's easier for _me_ to
-    implement because I know how to do a BST; I once watched a YouTube video
-    about hash buckets.
+ *  Hash tables. After fumbling around like an idiot and implementing several
+    overly-complicated binary tree abstractions, I just chose to do a simple
+    divide-and-conquer-type search through an ordered array.
 
 The data in `unicode_data.c` is the same stuff that's in `unicode_data.lisp`
 and at the beginning of `urot13.py`.
-
-### Electric Boogaloo
-
-I added a second C implementation that uses an array-based (as opposed to
-a proper node-based) binary tree. This is `urot13_new.c`, and it requires
-`dbht_new.c`. Everything else is the same.
