@@ -172,7 +172,7 @@ RANGES = [
     0xff21,  # fullwidth latin capital letter a
     0xff41,  # fullwidth latin small letter a
     0x1f110, # parenthesized latin capital letter a
-    0x1f310, # squared latin capital letter a
+    0x1f130, # squared latin capital letter a
     0x1f150, # negative circled latin capital letter a
     0x1f170, # negative squared latin capital letter a
     0x1f1e6  # regional indicator symbol letter a
