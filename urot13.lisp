@@ -13,7 +13,7 @@
 (defconstant +circled-capital-a+ #x24b6)
 (defconstant +circled-small-a+ #x24d0)
 (defconstant +parenthesized-capital-a+ #x1f110)
-(defconstant +squared-capital-a+ #x1f310)
+(defconstant +squared-capital-a+ #x1f130)
 (defconstant +negative-circled-capital-a+ #x1f150)
 (defconstant +negative-squared-capital-a+ #x1f170)
 (defconstant +regional-indicator-a+ #x1f1e6)
