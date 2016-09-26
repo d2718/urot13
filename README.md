@@ -8,8 +8,8 @@ character into a base ASCII character and a series of combining diacritics,
 performing rot13 on the base ASCII character, and writing out the new base
 character followed by the appropriate diacritics.
 
-There are three separate implementations here, depending on your preference:
-Lisp, Python, and C. All three operate indentically; they read lines of
+There are four separate implementations here, depending on your preference:
+Lisp, Python, C, and Rust. All four operate indentically; they read lines of
 [UTF-8](https://en.wikipedia.org/wiki/UTF-8)-encoded data from the standard
 input, rot13 them, and write UTF-8 back to the standard output.
 
@@ -105,3 +105,10 @@ for technical reasons. These are:
 
 The data in `unicode_data.c` is the same stuff that's in `unicode_data.lisp`
 and at the beginning of `urot13.py`.
+
+## Rust Implementation
+
+`urot13.rs` should just straight-up compile with `rustc`; you don't need to
+use `cargo` or anything. It uses the file `unidata.rs`. This is my first
+non-trivial Rust program, so this is probably not the best of all possible
+implementations. I got a Rust program to compile, though.
