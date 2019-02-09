@@ -8,8 +8,8 @@ character into a base ASCII character and a series of combining diacritics,
 performing rot13 on the base ASCII character, and writing out the new base
 character followed by the appropriate diacritics.
 
-There are four separate implementations here, depending on your preference:
-Lisp, Python, C, and Rust. All four operate indentically; they read lines of
+There are five separate implementations here, depending on your preference:
+Lisp, Python, C, Rust, and Lua. All four operate indentically; they read lines of
 [UTF-8](https://en.wikipedia.org/wiki/UTF-8)-encoded data from the standard
 input, rot13 them, and write UTF-8 back to the standard output.
 
