@@ -112,3 +112,10 @@ and at the beginning of `urot13.py`.
 use `cargo` or anything. It uses the file `unidata.rs`. This is my first
 non-trivial Rust program, so this is probably not the best of all possible
 implementations. I got a Rust program to compile, though.
+
+## Lua Implementation
+
+Lua strings are just chunks of bytes, so this includes a library
+`lunicode.lua` with functions `decode()` and `encode()` which translate
+between strings and arrays of integer code points. `urot13.lua` requires
+this library and functions like all the other implementations.
