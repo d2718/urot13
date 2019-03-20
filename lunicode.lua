@@ -1,8 +1,16 @@
 #!/usr/bin/lua
 
---[[ test.lua
+--[[ lunicode.lua
 
-Probing utf8 input/output.
+    A pure-Lua unicode encoding/decoding library.
+    
+    Module exports two public functions:
+    
+      * decode(s) takes a UTF-8 encoded string and returns an array of
+        code points
+        
+      * encode(s) takes an array of code points and returns a UTF-8
+        encoded string
 --]]
 
 local TEST = nil
