@@ -9,7 +9,7 @@
       * decode(s) takes a UTF-8 encoded string and returns an array of
         code points
         
-      * encode(s) takes an array of code points and returns a UTF-8
+      * encode(a) takes an array of code points and returns a UTF-8
         encoded string
 --]]
 
@@ -28,7 +28,7 @@ local HEAD = { 192, 224, 240 }
 local UPPER_LIMITS = { 0x800, 0x10000, 0x110000 }
 
 --[[ Organization of HEADS is
-          mh = {d, mc, b, n}
+          mh = {d, mc, n}
     where
         mh: decimal number of bitmask for head
         d:  decimal number of multibyte head
